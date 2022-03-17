@@ -22,7 +22,7 @@ def main():
     clients_endpoint = root_url + csv_endpoint
     print(clients_endpoint)
 
-    df = pd.read_csv(clients_endpoint)
+    df = pd.read_csv(clients_endpoint, delimiter=',')
     features = df.columns
     print(features)
     clients = df.drop(columns=['sponsor', 'leader', 'startDate', 'endDate'])
@@ -32,9 +32,9 @@ def main():
     sponsorship = df.loc[:, ['id', 'login', 'sponsor', 'startDate', 'endDate']]
     leadership = df.loc[:, ['id', 'login', 'startDate', 'endDate']]
 
-    clients.to_csv(os.path.join(output_dirpath, 'clients.csv'))
-    sponsorship.to_csv(os.path.join(output_dirpath, 'sponsorship.csv'))
-    leadership.to_csv(os.path.join(output_dirpath, 'leadership.csv'))
+    clients.to_csv(os.path.join(output_dirpath, 'clients.csv'), index=False)
+    sponsorship.to_csv(os.path.join(output_dirpath, 'sponsorship.csv'), index=False)
+    leadership.to_csv(os.path.join(output_dirpath, 'leadership.csv'), index=False)
 
 
 if __name__ == '__main__':
