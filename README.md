@@ -1,0 +1,1 @@
+python main.py <root_url> [,output_dirpath]

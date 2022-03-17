@@ -1,7 +1,7 @@
-import requests
-import pandas as pd
 import sys
 import os
+
+import pandas as pd
 
 
 def main():
