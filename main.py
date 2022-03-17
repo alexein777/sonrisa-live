@@ -10,7 +10,14 @@ def main():
 
     args = sys.argv[1:]
     root_url = args[0]
-    output_path = args[1] if len(args) > 1 else os.path.join('.', 'tmp')
+
+    if len(args) > 1:
+        output_dirpath = args[1]
+    else:
+        output_dirpath = os.path.join('.', 'out')
+        if not os.path.exists(output_dirpath):
+            os.mkdir(output_dirpath)
+
     csv_endpoint = '/clients.csv'
     clients_endpoint = root_url + csv_endpoint
     print(clients_endpoint)
@@ -25,9 +32,9 @@ def main():
     sponsorship = df.loc[:, ['id', 'login', 'sponsor', 'startDate', 'endDate']]
     leadership = df.loc[:, ['id', 'login', 'startDate', 'endDate']]
 
-    clients.to_csv(os.path.join(output_path, 'clients.csv'))
-    sponsorship.to_csv(os.path.join(output_path, 'sponsorship.csv'))
-    leadership.to_csv(os.path.join(output_path, 'leadership.csv'))
+    clients.to_csv(os.path.join(output_dirpath, 'clients.csv'))
+    sponsorship.to_csv(os.path.join(output_dirpath, 'sponsorship.csv'))
+    leadership.to_csv(os.path.join(output_dirpath, 'leadership.csv'))
 
 
 if __name__ == '__main__':
